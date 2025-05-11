@@ -3,17 +3,20 @@ import DataTable from "./DataTable";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import Pagination from "@/components/Pagination";
-import { Status } from "@prisma/client";
+import { Status, Ticket } from "@prisma/client";
 import StatusFilter from "@/components/StatusFilter";
 
-interface SearchParams {
+export interface SearchParams {
   status: Status;
   page: string;
+  orderBy: keyof Ticket;
 }
 
 const Tickets = async ({ searchParams }: { searchParams: SearchParams }) => {
-  const pageSize = 5;
+  const pageSize = 10;
   const page = parseInt(searchParams.page) || 1;
+
+  const orderBy = searchParams.orderBy ? searchParams.orderBy : "createdAt";
 
   const statuses = Object.values(Status);
 
@@ -39,6 +42,9 @@ const Tickets = async ({ searchParams }: { searchParams: SearchParams }) => {
 
   const tickets = await prisma.ticket.findMany({
     where,
+    orderBy: {
+      [orderBy]: orderBy === "status" ? "asc" : "desc",
+    },
     take: pageSize,
     skip: (page - 1) * pageSize,
   });
@@ -54,7 +60,7 @@ const Tickets = async ({ searchParams }: { searchParams: SearchParams }) => {
         </Link>
         <StatusFilter />
       </div>
-      <DataTable tickets={tickets} />
+      <DataTable tickets={tickets} searchParams={searchParams} />
       <Pagination
         itemCount={ticketCount}
         pageSize={pageSize}
