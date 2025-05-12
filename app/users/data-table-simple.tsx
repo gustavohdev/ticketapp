@@ -31,13 +31,13 @@ function DataTableSimple({ users }: Props) {
               ? users.map((user) => (
                   <TableRow key={user.id} data-href="/">
                     <TableCell>
-                      <Link href={`/user/id/${user.id}`}>{user.name}</Link>
+                      <Link href={`/users/${user.id}`}>{user.name}</Link>
                     </TableCell>
                     <TableCell>
-                      <Link href={`/user/id/${user.id}`}>{user.username}</Link>
+                      <Link href={`/users/${user.id}`}>{user.username}</Link>
                     </TableCell>
                     <TableCell>
-                      <Link href={`/user/id/${user.id}`}>{user.role}</Link>
+                      <Link href={`/users/${user.id}`}>{user.role}</Link>
                     </TableCell>
                   </TableRow>
                 ))
