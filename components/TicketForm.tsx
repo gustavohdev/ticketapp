@@ -30,7 +30,6 @@ const TicketForm = ({ ticket }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-  console.log("TicketForm", ticket);
   const form = useForm<TicketFormData>({
     resolver: zodResolver(ticketSchema),
   });
@@ -52,10 +51,10 @@ const TicketForm = ({ ticket }: Props) => {
       router.push("/tickets");
       router.refresh();
     } catch (error) {
+      console.error("Error submitting form", error);
       setError("An error occurred while submitting the form.");
       setIsSubmitting(false);
     }
-    console.log("Form submitted", values);
   }
 
   return (
@@ -151,6 +150,7 @@ const TicketForm = ({ ticket }: Props) => {
           </Button>
         </form>
       </Form>
+      <p className="text-destructive">{error}</p>
     </div>
   );
 };
