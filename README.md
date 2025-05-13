@@ -1,4 +1,4 @@
-## Getting Started with the Ticketing App
+## Getting Started with the Ticketing App 🛸🛸🛸🛸
 
 #### Current Stack
 
@@ -24,7 +24,7 @@
 
 ## Running Locally ( Dev )
 
-You should have .env and .env.local file in your directory
+#### Have .env and .env.local file in your root directory
 
     .env
     DATABASE_URL="mysql://root:password@localhost:3306/TicketDB"
@@ -34,7 +34,7 @@ You should have .env and .env.local file in your directory
     .env.local
     NEXTAUTH_SECRET="v3gS0C5XYm7xOi9qr6glQNTE2d8TEs="
 
-you can generate your own auth secret with, this is for Next Auth
+#### Generate your own auth secret––this is for Next Auth
 
     openssl rand -base64 32
 
@@ -44,7 +44,7 @@ you can generate your own auth secret with, this is for Next Auth
 
 #### Bonus - Dump Data
 
-- You have a SQL_DUMP_DATA.txt file, just execute that big statement in your DB, you should have example files now.
+> You have a SQL_DUMP_DATA.txt file, just execute that big statement in your DB, you should have example files now.
 
 #### Generating Prisma Migrations
 
@@ -66,11 +66,13 @@ you can generate your own auth secret with, this is for Next Auth
 #### Install these dependencies
 
        npm install dotenv-cli --save-dev
-        npm install -g dotenv-cli
+       npm install -g dotenv-cli
 
 - Get a DB on AWS, Railway or any other service that you would like and setup your database ( Recommend MySQL for now ).
-- Send your schema to your DB without generate migrations with
+- Send your schema to your DB without generate migrations with...
+
   `dotenv -e .env.prod -- npx prisma db push`
+
   > Create your ADMIN user first in your production DB to be able to create users.
 
 ## Deploying on Vercel
@@ -79,4 +81,18 @@ you can generate your own auth secret with, this is for Next Auth
 - Override the build command to `prisma generate && next build`
 - Add your production variables, you will only have
 
-Your app should be running.
+#### <i>Your app should be running.</i>
+
+## About Prisma when you go further
+
+#### Hints 💡
+
+`dotenv -e .env.prod -- npx prisma migrate deploy`
+
+- This applies existing migration files safely (ones you've already created with migrate dev), and is the recommended way to apply schema changes in production.
+
+#### Warnings ⚠️
+
+` dotenv -e .env.prod -- npx prisma db push`
+
+- Not recommended for production in most cases unless you're doing a fresh setup or have full control over data integrity.
