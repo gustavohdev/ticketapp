@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Getting Started with the Ticketing App
 
-## Getting Started
+#### Current Stack
 
-First, run the development server:
+- Next.js
+- Shadcn
+- TypeScript
+- Prisma
+- MySQL - [install and have a instance ready](https://dev.mysql.com/downloads/)
+- Next Auth
+- Zod
+- TailwindCSS
+- React Hook Form
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+> <i>Check also package.json</i>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### With this app you have:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- CRUD - Tickets and handle different types of status or priority
+- CRUD - Users with different roles
+- Have general information with a Ticket Dashboard
+- You do have an all configured and secure application
+- You can host your own Service Desk
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Running Locally ( Dev )
 
-## Learn More
+You should have .env and .env.local file in your directory
 
-To learn more about Next.js, take a look at the following resources:
+    .env
+    DATABASE_URL="mysql://root:password@localhost:3306/TicketDB"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    .env.local
+    NEXTAUTH_SECRET="v3gS0C5XYm7xOi9qr6glQNTE2d8TEs="
 
-## Deploy on Vercel
+you can generate your own auth secret with, this is for Next Auth
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    openssl rand -base64 32
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Install Dependencies
+
+    npm i
+
+#### Bonus - Dump Data
+
+- You have a SQL_DUMP_DATA.txt file, just execute that big statement in your DB, you should have example files now.
+
+#### Generating Prisma Migrations
+
+    npx prisma migrate dev
+    // follow the steps, put any name you want for the migration
+    // if you access your DB, your schema will be there
+
+#### Run
+
+    yarn run dev
+
+## Deploying to Prod
+
+#### Create an .env.prod, this will make you create the prod initial config locally
+
+        DATABASE_URL=""
+        NEXTAUTH_SECRET=""
+
+#### Install these dependencies
+
+       npm install dotenv-cli --save-dev
+        npm install -g dotenv-cli
+
+- Get a DB on AWS, Railway or any other service that you would like and setup your database ( Recommend MySQL for now ).
+- Send your schema to your DB without generate migrations with
+  `dotenv -e .env.prod -- npx prisma db push`
+  > Create your ADMIN user first in your production DB to be able to create users.
+
+## Deploying on Vercel
+
+- Connect your Github repo to Vercel
+- Override the build command to `prisma generate && next build`
+- Add your production variables, you will only have
+
+Your app should be running.
