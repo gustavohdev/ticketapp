@@ -42,4 +42,7 @@ VALUES
 
   ('New Employee Onboarding', 'Set up IT resources and accounts for a new employee joining the company. Ensure a smooth onboarding experience for the new team member.', 'OPEN', 'LOW', '2023-12-29 15:30:00', '2023-12-29 15:30:00'),
 
-  ('Server Disk Space Alert', 'Low disk space alert on a critical server. Free up disk space and implement a long-term solution to prevent future space constraints.', 'OPEN', 'HIGH', '2023-12-29 16:45:00', '2023-12-29 16:45:00')
+  ('Server Disk Space Alert', 'Low disk space alert on a critical server. Free up disk space and implement a long-term solution to prevent future space constraints.', 'OPEN', 'HIGH', '2023-12-29 16:45:00', '2023-12-29 16:45:00');
+
+INSERT INTO User (name, username, password, role)
+VALUES ('Admin', 'admin', '$2b$10$aR6MkboC.WmgNQl1Ssj8me6J9gLB6UsBfuqKn3Zzdj9T1/Lys/Ug.', 'ADMIN');
