@@ -1,6 +1,6 @@
-## Getting Started with the Ticketing App 🛸🛸🛸🛸
+# Getting Started with the Ticketing App 🛸🛸🛸🛸
 
-#### Current Stack
+### Current Stack
 
 - Next.js
 - Shadcn
@@ -12,9 +12,9 @@
 - TailwindCSS
 - React Hook Form
 
-> <i>Check also package.json</i>
+💡 <i>Check also package.json</i>
 
-#### With this app you have:
+### With this app you have:
 
 - CRUD - Tickets and handle different types of status or priority
 - CRUD - Users with different roles
@@ -22,7 +22,27 @@
 - You do have an all configured and secure application
 - You can host your own Service Desk
 
-## Running Locally ( Dev )
+## Easy Setup with Docker
+
+- Have Docker on your machine - [Docker](https://www.docker.com/)
+- Clone and go the root of the project
+- Use:
+
+```sh
+docker compose up
+```
+
+✅ Your app is gonna be available at port 3000
+
+🪪 You can login as an admin user with an ADMIN role with this one:
+`admin`
+`adminpass123`
+
+⏭️ If wanna persist the data you will need to create a volume attached to the db inside docker-compose.yml
+
+⏭️ One thing that I will be working on later or you can work on it your own, it's add logging to the tickets
+
+## Manual Setup - Running Locally ( dev )
 
 #### Have .env and .env.local file in your root directory
 
@@ -44,7 +64,7 @@
 
 #### Bonus - Dump Data
 
-> You have a SQL_DUMP_DATA.txt file, just execute that big statement in your DB, you should have example files now.
+✅ You have a SQL_DUMP_DATA.sql file, just execute that big statement in your DB, you should have example files now.
 
 #### Generating Prisma Migrations
 
@@ -73,13 +93,13 @@
 
   `dotenv -e .env.prod -- npx prisma db push`
 
-  > Create your ADMIN user first in your production DB to be able to create users.
+  ‼️ Create your ADMIN user first in your production DB to be able to create users. ( SQL DUMP DATA already provides it)
 
 ## Deploying on Vercel
 
 - Connect your Github repo to Vercel
 - Override the build command to `prisma generate && next build`
-- Add your production variables, you will only have
+- Add your production variables inside Vercel
 
 #### <i>Your app should be running.</i>
 
